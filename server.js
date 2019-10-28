@@ -10,7 +10,7 @@ const { IamAuthenticator } = require('ibm-watson/auth');
 const languageTranslator = new LanguageTranslatorV3({
   version: '2018-05-01',
   authenticator: new IamAuthenticator({
-    apikey: '',
+    apikey: process.env.API_LANGTRANSLATOR,
   }),
   url: 'https://gateway-lon.watsonplatform.net/language-translator/api',
 });
@@ -18,10 +18,8 @@ const languageTranslator = new LanguageTranslatorV3({
 const db=knex({
     client:'pg',
     connection:{
-        host:'127.0.0.1',
-        user:'postgres',
-        password:'Angelo2001',
-        database:'translating-db'
+        connectionString:process.env.DATABASE_URL,
+  			ssl : true
     }
 });
 app.use(bodyParser.json());
@@ -163,22 +161,3 @@ app.get('/play',(req,res)=>{
 
 app.listen(process.env.PORT || 3001,()=>console.log(`App is running on ${process.env.PORT || 3001 }`))
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// db.schema.createTable('users', function (table) {
-//   table.increments();
-//   table.string('name');
-//   table.timestamps();
-// })
