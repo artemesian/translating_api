@@ -25,7 +25,7 @@ const db=knex({
 app.use(bodyParser.json());
 app.use(cors());
 app.get("/",(req,res)=>{
-	res.json("it's working")
+	res.json("it's working Angelo")
 })
 app.post("/signin",(req,res)=>{
 	let { email,password } = req.body;
