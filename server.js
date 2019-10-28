@@ -161,7 +161,7 @@ app.get('/play',(req,res)=>{
 })
 
 
-app.listen(3001,()=>console.log("App is running"))
+app.listen(process.env.PORT || 3001,()=>console.log(`App is running on ${process.env.PORT || 3001 }`))
 
 
 
