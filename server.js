@@ -27,7 +27,7 @@ const db=knex({
 app.use(bodyParser.json());
 app.use(cors());
 app.get("/",(req,res)=>{
-	res.json(usersdb)
+	res.json("it's working")
 })
 app.post("/signin",(req,res)=>{
 	let { email,password } = req.body;
@@ -161,7 +161,7 @@ app.get('/play',(req,res)=>{
 })
 
 
-app.listen(process.env.PORT || 3001,()=>console.log(`App is running on ${process.env.PORT || 3001 }`))
+app.listen(process.env.PORT,()=>console.log(`App is running on ${process.env.PORT}`))
 
 
 
