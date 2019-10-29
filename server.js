@@ -73,8 +73,8 @@ app.post("/add",(req,res)=>{
 	let { translateFromContent,translateToContent,email } = req.body;
 		db.insert({
 			email:email,
-			translatefr:translateFromContent.toLowerCase(),
-			translatede:translateToContent.toLowerCase(),
+			translatefr:translateFromContent.toLowerCase().replace(/\.$/, ""),
+			translatede:translateToContent.toLowerCase().replace(/\.$/, ""),
 		})
 		.into('translates')
 		.returning("*")
@@ -101,7 +101,7 @@ app.post('/search',(req,res)=>{
 						  		db.insert({
 											email:email,
 											[`translate${From}`]:searchField.toLowerCase(),
-											[`translate${To}`]:response.result['translations'][0]['translation'].toLowerCase(),
+											[`translate${To}`]:response.result['translations'][0]['translation'].toLowerCase().replace(/\.$/, ""),
 										})
 										.into('translates')
 										.returning("*")
